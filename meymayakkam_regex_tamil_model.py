@@ -23,6 +23,16 @@ import re
 # ஒரு சொல்லில் ட், ற், ல், ள் ஆகிய எழுத்துக்களுக்குப் பின்பு ஆகிய க, ச, ப ஆகிய எழுத்துக்கள் மயங்கி வரும். எ-டு. கேட்க, கற்க, செல்க, கொள்க.
 
 x=int(input("சொல்லை உள்ளீடு செய்: "))
+
+# Commented by paramesh
+#meymayakkam_regex_tamil_model.py", line 25, in <module>
+#    x=int(input("சொல்லை உள்ளீடு செய்: "))
+#    ValueError: invalid literal for int() with base 10:
+#
+
+# The error is arising at line 25, when you look at it you converted the text to integer, which will not happen. So remove int typecasting in line 25.
+
+
 txt = ["ட் ற் ல் ள் + க ச ப"]
 
 if re.match('.*ட்க ', '.*ற்க ', '.*ல்க ', '.*ள்க ', '.*ட்ச ', '.*ற்ச ', '.*ல்ச ', '.*ள்ச ', '.*ட்ப ', '.*ற்ப ', '.*ல்ப ', '.*ள்ப ', text):
