@@ -33,7 +33,7 @@ x=int(input("சொல்லை உள்ளீடு செய்: "))
 # The error is arising at line 25, when you look at it you converted the text to integer, which will not happen. So remove int typecasting in line 25.
 
 
-txt = ["ட் ற் ல் ள் + க ச ப"]
+text = ["ட் ற் ல் ள் + க ச ப"]
 
 if re.match('.*ட்க ', '.*ற்க ', '.*ல்க ', '.*ள்க ', '.*ட்ச ', '.*ற்ச ', '.*ல்ச ', '.*ள்ச ', '.*ட்ப ', '.*ற்ப ', '.*ல்ப ', '.*ள்ப ', text):
 # At 38 line you will recieve two errors, one is the variable is txt but you used text. Kindly choose one.
@@ -41,6 +41,7 @@ if re.match('.*ட்க ', '.*ற்க ', '.*ல்க ', '.*ள்க ', '.*�
 # At 38 line you will also get another error, re.match function will take only 2 to 3 arguments. So we cannot input all condition like this. Instead we can have a list of items and iterate using loops. 
 
 # I am sharing suggestions only, so you can make corrections and learn python more, but if you want to make corrections directly by me. let me know. Also we can connect in a call or meet where I can explain why these are happening in detail
+# உறுதியாக இணையக் கூடுகையின் மூலம் இணைந்தால்தான் நான் இன்னும் கற்றுக்கொள்ள முடியும். 	
 	print("இது சரியான சொல்லாகும்.")
 else:
 	print("இது பிழையான சொல்லாகும்.")
