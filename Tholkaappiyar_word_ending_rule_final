@@ -121,8 +121,8 @@ for word in sentence.split():
 # இது வினா எழுத்துக்களைப் பொருத்திப் பார்ப்பதற்குரிய நிரலாகும்.
 
 if uyir_check or mellinam_check or idaiyinam_check or oorezhuthoorumozhi_check or alapedai_check or suttu_check or vinaa_check:
-	return True
+	print (True)
 else:
-	return false
+	print (false)
 
 # இது இறுதியாக அனைத்து விதிகளையும் பொருத்திப் பார்த்து பதில் அளிப்பதற்குரிய நிரலாகும்.
