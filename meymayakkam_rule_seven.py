@@ -14,10 +14,10 @@ if "ர்" in letters and letters.index("ர்")!=len(letters)-1:
 		root_last=root_words[0]
 	else:
 		root_last=root_words
-	if root_last:="ர்":
-		print(True)
-	else:
+	if root_last=="ர்":
 		print(False)
+	else:
+		print(True)
 
 elif "ழ்" in letters and letters.index("ழ்")!=len(letters)-1:
 	ind=letters.index("ழ்")
@@ -27,6 +27,6 @@ elif "ழ்" in letters and letters.index("ழ்")!=len(letters)-1:
 	else:
 		root_last=root_words
 	if root_last:="ழ்":
-		print(True)
-	else:
 		print(False)
+	else:
+		print(True)
