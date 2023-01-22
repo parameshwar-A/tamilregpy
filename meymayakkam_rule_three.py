@@ -9,75 +9,94 @@ import tamil
 
 word=input("Enter the sentence to check: ")
 letters=tamil.utf8.get_letters(word)
+Mei = ["க்", "ங்", "ச்", "ஞ்", "ட்", "ண்", "த்", "ந்", "ப்", "ம்", "ய்", "ர்", "ல்", "வ்", "ழ்", "ள்", "ற்","ன்"]
 
 if "ங்" in letters and letters.index("ங்")!=len(letters)-1:
 	ind=letters.index("ங்")
-	root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-	if type(root_words)==tuple:
-		root_last=root_words[0]
+	if letters[ind+1] in Mei:
+		print (False)
 	else:
-		root_last=root_words
-	if root_last=="க்":
-		print(True)
-	else:
-		print(False)
+		root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
+		if type(root_words)==tuple:
+			root_last=root_words[0]
+		else:
+			root_last=root_words
+		if root_last=="க்":
+			print(True)
+		else:
+			print(False)
 		
 elif "ஞ்" in letters and letters.index("ஞ்")!=len(letters)-1:
 	ind=letters.index("ஞ்")
-	root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-	if type(root_words)==tuple:
-		root_last=root_words[0]
+	if letters[ind+1] in Mei:
+		print (False)
 	else:
-		root_last=root_words
-	if root_last=="ச்":
-		print(True)
-	else:
-		print(False)
+		root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
+		if type(root_words)==tuple:
+			root_last=root_words[0]
+		else:
+			root_last=root_words
+		if root_last=="ச்":
+			print(True)
+		else:
+			print(False)
 
 elif "ண்" in letters and letters.index("ண்")!=len(letters)-1:
 	ind=letters.index("ண்")
-	root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-	if type(root_words)==tuple:
-		root_last=root_words[0]
+	if letters[ind+1] in Mei:
+		print (False)
 	else:
-		root_last=root_words
-	if root_last=="ட்":
-		print(True)
-	else:
-		print(False)
+		root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
+		if type(root_words)==tuple:
+			root_last=root_words[0]
+		else:
+			root_last=root_words
+		if root_last=="ட்":
+			print(True)
+		else:
+			print(False)
 		
 elif "ந்" in letters and letters.index("ந்")!=len(letters)-1:
 	ind=letters.index("ந்")
-	root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-	if type(root_words)==tuple:
-		root_last=root_words[0]
+	if letters[ind+1] in Mei:
+		print (False)
 	else:
-		root_last=root_words
-	if root_last=="த்":
-		print(True)
-	else:
-		print(False)
+		root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
+		if type(root_words)==tuple:
+			root_last=root_words[0]
+		else:
+			root_last=root_words
+		if root_last=="த்":
+			print(True)
+		else:
+			print(False)
 
 elif "ம்" in letters and letters.index("ம்")!=len(letters)-1:
 	ind=letters.index("ம்")
-	root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-	if type(root_words)==tuple:
-		root_last=root_words[0]
+	if letters[ind+1] in Mei:
+		print (False)
 	else:
-		root_last=root_words
-	if root_last=="ப்":
-		print(True)
-	else:
-		print(False)
+		root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
+		if type(root_words)==tuple:
+			root_last=root_words[0]
+		else:
+			root_last=root_words
+		if root_last=="ப்":
+			print(True)
+		else:
+			print(False)
 		
 elif "ன்" in letters and letters.index("ன்")!=len(letters)-1:
 	ind=letters.index("ன்")
-	root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-	if type(root_words)==tuple:
-		root_last=root_words[0]
+	if letters[ind+1] in Mei:
+		print (False)
 	else:
-		root_last=root_words
-	if root_last=="ற்":
-		print(True)
-	else:
-		print(False)
+		root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
+		if type(root_words)==tuple:
+			root_last=root_words[0]
+		else:
+			root_last=root_words
+		if root_last=="ற்":
+			print(True)
+		else:
+			print(False)
