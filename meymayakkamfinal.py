@@ -5,70 +5,35 @@ import tamil
 
 #word=input("Enter the word to check: ")
 
-Mei = ["க்", "ங்", "ச்", "ஞ்", "ட்", "ண்", "த்", "ந்", "ப்", "ம்", "ய்", "ர்", "ல்", "வ்", "ழ்", "ள்", "ற்","ன்"]
+def meymayakkam_checker(word_letters, letter, allowed_list):
+    Mei = ["க்", "ங்", "ச்", "ஞ்", "ட்", "ண்", "த்", "ந்", "ப்", "ம்", "ய்", "ர்", "ல்", "வ்", "ழ்", "ள்", "ற்","ன்"]    
+    ind=word_letters.index(letter)
+    if word_letters[ind+1] in Mei:
+	    return False
+    else:
+	    root_words=tamil.utf8.splitMeiUyir(word_letters[ind+1])
+	    if type(root_words)==tuple:
+		    root_last=root_words[0]
+	    else:
+		    root_last=root_words
+	    if root_last in allowed_list: #=="க்" or  root_last=="ச்" or root_last=="ப்":
+		    return True
+	    else:
+		    return False
+
+
 def meymayakkam1(word):
     letters=tamil.utf8.get_letters(word)
     if "ட்" in letters and letters.index("ட்")!=len(letters)-1:
-	    ind=letters.index("ட்")
-	    if letters[ind+1] in Mei:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="க்" or  root_last=="ச்" or root_last=="ப்":
-			    return True
-		    else:
-			    return False
-
+        return meymayakkam_checker(letters, "ட்", ["க்","ச்","ப்"])
     elif "ற்" in letters and letters.index("ற்")!=len(letters)-1:
-	    ind=letters.index("ற்")
-	    if letters[ind+1] in Mei:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="க்" or  root_last=="ச்" or root_last=="ப்":
-			    return True
-		    else:
-			    return False
-
+	    return meymayakkam_checker(letters, "ற்", ["க்","ச்","ப்"])
     elif "ல்" in letters and letters.index("ல்")!=len(letters)-1:
-	    ind=letters.index("ல்")
-	    if letters[ind+1] in Mei:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="க்" or  root_last=="ச்" or root_last=="ப்":
-			    return True
-		    else:
-			    return False
-
+	    return meymayakkam_checker(letters, "ல்", ["க்","ச்","ப்"])
     elif "ள்" in letters and letters.index("ள்")!=len(letters)-1:
-	    ind=letters.index("ள்")
-	    if letters[ind+1] in Mei:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="க்" or  root_last=="ச்" or root_last=="ப்":
-			    return True
-		    else:
-			    return False
+	    return meymayakkam_checker(letters, "ள்", ["க்","ச்","ப்"])
     else:
-		    return False
+		    return None
 		    
 # 2) ல் ள் + ய வ
 # ல், ள் ஆகிய எழுத்துக்களுக்குப் பின்பு ய, வ எழுத்துக்கள் மயங்கி வரும். எ-டு. கொல்யானை, வெள்வளை.
@@ -76,36 +41,11 @@ def meymayakkam1(word):
 def meymayakkam2(word):
     letters=tamil.utf8.get_letters(word)
     if "ல்" in letters and letters.index("ல்")!=len(letters)-1:
-	    ind=letters.index("ல்")
-	    if letters[ind+1] in Mei:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="ய்" or  root_last=="வ்":
-			    return True
-		    else:
-			    return False
-
+        return meymayakkam_checker(letters, "ல்", ["ய்","வ்"])
     elif "ள்" in letters and letters.index("ள்")!=len(letters)-1:
-	    ind=letters.index("ள்")
-	    if letters[ind+1] in Mei:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="ய்" or  root_last=="வ்":
-			    return True
-		    else:
-			    return False
+	    return meymayakkam_checker(letters, "ள்", ["ய்","வ்"])
     else:
-        return False
+        return None
 
 # 3) ங் ஞ் ண் ந் ம் ன் + தத்தமிசைகள் (க ச ட த ப ற)
 # மெல்லின எழுத்துக்கள் ஆகிய ங், ஞ், ண், ந், ம், ன் ஆகிய எழுத்துக்களுக்குப் பின்பு அதனுடைய ஒத்த ஒலிகளாக அறியப்படுகின்ற வல்லின எழுத்துக்கள் ஆகிய க, ச, ட, த, ப, ற ஆகிய எழுத்துகள் மயங்கி வரும். 
@@ -117,97 +57,19 @@ def meymayakkam2(word):
 def meymayakkam3(word):
     letters=tamil.utf8.get_letters(word)
     if "ங்" in letters and letters.index("ங்")!=len(letters)-1:
-	    ind=letters.index("ங்")
-	    if letters[ind+1] in Mei:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="க்":
-			    return True
-		    else:
-			    return False
-
-		    
+	    return meymayakkam_checker(letters, "ங்", ["க்"])
     elif "ஞ்" in letters and letters.index("ஞ்")!=len(letters)-1:
-	    ind=letters.index("ஞ்")
-	    if letters[ind+1] in Mei:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="ச்":
-			    return True
-		    else:
-			    return False
-
+        return meymayakkam_checker(letters, "ஞ்", ["ச்"])
     elif "ண்" in letters and letters.index("ண்")!=len(letters)-1:
-	    ind=letters.index("ண்")
-	    if letters[ind+1] in Mei:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="ட்":
-			    return True
-		    else:
-			    return False
-		    
+        return meymayakkam_checker(letters, "ண்", ["ட்"])    
     elif "ந்" in letters and letters.index("ந்")!=len(letters)-1:
-	    ind=letters.index("ந்")
-	    if letters[ind+1] in Mei:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="த்":
-			    return True
-		    else:
-			    return False
-
+        return meymayakkam_checker(letters, "ந்", ["த்"])   
     elif "ம்" in letters and letters.index("ம்")!=len(letters)-1:
-	    ind=letters.index("ம்")
-	    if letters[ind+1] in Mei:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="ப்":
-			    return True
-		    else:
-			    return False
-		    
+        return meymayakkam_checker(letters, "ம்", ["ப்"])
     elif "ன்" in letters and letters.index("ன்")!=len(letters)-1:
-	    ind=letters.index("ன்")
-	    if letters[ind+1] in Mei:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="ற்":
-			    return True
-		    else:
-			    return False
+        return meymayakkam_checker(letters, "ன்", ["ற்"])
     else:
-        return False
+        return None
 	    
 			    
 # 4) ஞ் ந் ம் வ் + ய
@@ -217,66 +79,15 @@ def meymayakkam3(word):
 def meymayakkam4(word):
     letters=tamil.utf8.get_letters(word)
     if "ஞ்" in letters and letters.index("ஞ்")!=len(letters)-1:
-	    ind=letters.index("ஞ்")
-	    if letters[ind+1] in Mei:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="ய்":
-			    return True
-		    else:
-			    return False
-
+        return meymayakkam_checker(letters, "ஞ்", ["ய்"])
     elif "ந்" in letters and letters.index("ந்")!=len(letters)-1:
-	    ind=letters.index("ந்")
-	    if letters[ind+1] in Mei:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="ய்":
-			    return True
-		    else:
-			    return False
-		    
+        return meymayakkam_checker(letters, "ந்", ["ய்"])	    
     elif "ம்" in letters and letters.index("ம்")!=len(letters)-1:
-	    ind=letters.index("ம்")
-	    if letters[ind+1] in Mei:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="ய்":
-			    return True
-		    else:
-			    return False
-		    
+        return meymayakkam_checker(letters, "ம்", ["ய்"])	 
     elif "வ்" in letters and letters.index("வ்")!=len(letters)-1:
-	    ind=letters.index("வ்")
-	    if letters[ind+1] in Mei:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="ய்":
-			    return True
-		    else:
-			    return False
+        return meymayakkam_checker(letters, "வ்", ["ய்"])
     else:
-        return False
+        return None
 			    
 # 5) ம் + வ
 # ம் எழுத்துக்களுக்குப் பின்பு ய எழுத்து மயங்கி வருவதைப்போல் வ எழுத்தும் மயங்கி வரும். எ-டு. நிலம்வலிது.
@@ -284,21 +95,9 @@ def meymayakkam4(word):
 def meymayakkam5(word):
     letters=tamil.utf8.get_letters(word)
     if "ம்" in letters and letters.index("ம்")!=len(letters)-1:
-	    ind=letters.index("ம்")
-	    if letters[ind+1] in Mei:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="வ்":
-			    return True
-		    else:
-			    return False
+        return meymayakkam_checker(letters, "ம்", ["வ்"])
     else:
-        return False
+        return None
 		    
 # 6) ய் ர் ழ் + க ச த ப ஞ ந ம ய வ ங
 # ய், ர், ழ் ஆகிய எழுத்துக்களுக்குப் பின்பு க, ச, த, ப, ஞ, ந, ம, ய, வ, ங எழுத்துக்கள் மயங்கி வரும். 
@@ -315,51 +114,13 @@ Mei2 = ["ங்", "ச்", "ஞ்", "ட்", "ண்", "த்", "ந்", "�
 def meymayakkam6(word):
     letters=tamil.utf8.get_letters(word)
     if "ய்" in letters and letters.index("ய்")!=len(letters)-1:
-	    ind=letters.index("ய்")
-	    if letters[ind+1] in Mei1:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="க்" or  root_last=="ச்" or  root_last=="த்" or root_last=="ப்" or root_last=="ஞ்" or  root_last=="ந்" or root_last=="ம்" or  root_last=="ய்" or root_last=="வ்"  or root_last=="ங்":
-			    return True
-		    else:
-			    return False
-		    
+        return meymayakkam_checker(letters, "ய்", ["க்","ச்","த்","ப்","ஞ்","ந்","ம்","ய்","வ்","ங்"])		    
     elif "ர்" in letters and letters.index("ர்")!=len(letters)-1:
-	    ind=letters.index("ர்")
-	    if letters[ind+1] in Mei2:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="க்" or  root_last=="ச்" or  root_last=="த்" or root_last=="ப்" or root_last=="ஞ்" or  root_last=="ந்" or root_last=="ம்" or  root_last=="ய்" or root_last=="வ்"  or root_last=="ங்":
-			    return True
-		    else:
-			    return False
-
+        return meymayakkam_checker(letters, "ர்", ["க்","ச்","த்","ப்","ஞ்","ந்","ம்","ய்","வ்","ங்"])
     elif "ழ்" in letters and letters.index("ழ்")!=len(letters)-1:
-	    ind=letters.index("ழ்")
-	    if letters[ind+1] in Mei2:
-		    return False
-	    else:
-		    root_words=tamil.utf8.splitMeiUyir(letters[ind+1])
-		    if type(root_words)==tuple:
-			    root_last=root_words[0]
-		    else:
-			    root_last=root_words
-		    if root_last=="க்" or  root_last=="ச்" or  root_last=="த்" or root_last=="ப்" or root_last=="ஞ்" or  root_last=="ந்" or root_last=="ம்" or  root_last=="ய்" or root_last=="வ்"  or root_last=="ங்":
-			    return True
-		    else:
-			    return False
+        return meymayakkam_checker(letters, "ழ்", ["க்","ச்","த்","ப்","ஞ்","ந்","ம்","ய்","வ்","ங்"])
     else:
-        return False
+        return None
 			    
 # 7) ர ழ அலங்கடை
 # ர, ழ என்ற எழுத்துக்கள் தவிர பிற எழுத்துக்கள் தன் எழுத்துக்களோடு தன் எழுத்துக்கள் மயங்கி வரும். 
@@ -374,7 +135,7 @@ def meymayakkam7(word):
 		    root_last=root_words[0]
 	    else:
 		    root_last=root_words
-	    if root_last=="ர்":
+	    if root_last!="ர்":
 		    return False
 	    else:
 		    return True
@@ -386,9 +147,9 @@ def meymayakkam7(word):
 		    root_last=root_words[0]
 	    else:
 		    root_last=root_words
-	    if root_last:="ழ்":
+	    if root_last!="ழ்":
 		    return False
 	    else:
 		    return True
     else:
-        return False
+        return None
