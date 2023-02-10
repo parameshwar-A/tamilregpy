@@ -108,24 +108,5 @@ def vinaa_check(word):
         return False
 
 # இது வினா எழுத்துக்களைப் பொருத்திப் பார்ப்பதற்குரிய நிரலாகும்.
-#sentence = "அவன் ஒரூஉ அங்கு இவ்வாறு பேசும் ஆ ஈ ஊ ஏ ஐ ஓ இவ்விடத்தில் உள்ளது"
-#sentence = "வணக்கம் நான் இப்பொது என்ன செய்யவேண்டும் "
-#sentence = "வணக்கம் நான் அக்சிட்ஜபிக்ஜ்கச்டபிக்  என்ன செய்யவேண்டும் " -- This sentence has a wrong word but still we are getting correct only Kindly check on this
-sentence = input("Enter the tamil sentence: ") # Will get sentence input from user prompt in terminal
-issue_flag=False # This is the flag used to identify the issue
-for word in sentence.split():
-    if uyir_check(word) or mellinam_check(word) or idaiyinam_check(word) or oorezhuthoorumozhi_check(word) or alapedai_check(word) or suttu_check(word) or vinaa_check(word):
-        print (True)
-        continue
-	    
-    else:
-        issue_flag=True # When it finds a issue, it will change to True
-        break
-	    #print (false)
 
-# If a issue is found it will print wrong word
-if issue_flag:
-    print("The sentence has a wrong word")
-else:
-    print("All the words in the sentence are perfectly correct")
 # இது இறுதியாக அனைத்து விதிகளையும் பொருத்திப் பார்த்து பதில் அளிப்பதற்குரிய நிரலாகும்.
