@@ -153,3 +153,30 @@ def meymayakkam7(word):
 		    return True
     else:
         return None
+        
+def meymayakkam8(word):
+    letters=tamil.utf8.get_letters(word)
+    Mei = ["க்", "ச்", "த்", "ப்", "ங்", "ஞ்", "ந்", "ம்"]
+    if "ய்" in letters and letters.index("ய்")!=len(letters)-1:
+        ind=letters.index("ய்")
+        if letters[ind+1] in Mei:
+            return True
+        else:
+            return meymayakkam_checker(letters, "ய்", ["க்","ச்","த்","ப்","ஞ்","ந்","ம்","ங்"])
+
+    elif "ர்" in letters and letters.index("ர்")!=len(letters)-1:
+        ind=letters.index("ர்")
+        if letters[ind+1] in Mei:
+            return True
+        else:
+            return meymayakkam_checker(letters, "ர்", ["க்","ச்","த்","ப்","ஞ்","ந்","ம்","ங்"])
+
+    elif "ழ்" in letters and letters.index("ழ்")!=len(letters)-1:
+        ind=letters.index("ழ்")
+        if letters[ind+1] in Mei:
+            return True
+        else:
+            return meymayakkam_checker(letters, "ழ்", ["க்","ச்","த்","ப்","ஞ்","ந்","ம்","ங்"])
+    else:
+        return None
+
