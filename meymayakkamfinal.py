@@ -5,10 +5,9 @@ import tamil
 
 #word=input("Enter the word to check: ")
 
-def meymayakkam_checker(word_letters, letter, allowed_list):
-    Mei = ["க்", "ங்", "ச்", "ஞ்", "ட்", "ண்", "த்", "ந்", "ப்", "ம்", "ய்", "ர்", "ல்", "வ்", "ழ்", "ள்", "ற்","ன்"]    
+def meymayakkam_checker(word_letters, letter, allowed_list, Mei=["க்", "ங்", "ச்", "ஞ்", "ட்", "ண்", "த்", "ந்", "ப்", "ம்", "ய்", "ர்", "ல்", "வ்", "ழ்", "ள்", "ற்","ன்"] ): 
     ind=word_letters.index(letter)
-    if word_letters[ind+1] in Mei:
+    if word_letters[ind+1] in Mei:# Need to check on this point since some are overlapping. we can use sets here
 	    return False
     else:
 	    root_words=tamil.utf8.splitMeiUyir(word_letters[ind+1])
@@ -108,17 +107,17 @@ def meymayakkam5(word):
 # Enter the sentence to check: வேய்ங்குழல் - True
 
 
-Mei1 = ["ச்", "ஞ்", "ட்", "ண்", "த்", "ந்", "ப்", "ம்", "ய்", "ர்", "ல்", "வ்", "ழ்", "ள்", "ற்","ன்"]
-Mei2 = ["ங்", "ச்", "ஞ்", "ட்", "ண்", "த்", "ந்", "ப்", "ம்", "ய்", "ர்", "ல்", "வ்", "ழ்", "ள்", "ற்","ன்"]
+#Mei1 = ["ச்", "ஞ்", "ட்", "ண்", "த்", "ந்", "ப்", "ம்", "ய்", "ர்", "ல்", "வ்", "ழ்", "ள்", "ற்","ன்"]
+#Mei2 = ["ங்", "ச்", "ஞ்", "ட்", "ண்", "த்", "ந்", "ப்", "ம்", "ய்", "ர்", "ல்", "வ்", "ழ்", "ள்", "ற்","ன்"]
 
 def meymayakkam6(word):
     letters=tamil.utf8.get_letters(word)
     if "ய்" in letters and letters.index("ய்")!=len(letters)-1:
-        return meymayakkam_checker(letters, "ய்", ["க்","ச்","த்","ப்","ஞ்","ந்","ம்","ய்","வ்","ங்"])		    
+        return meymayakkam_checker(letters, "ய்", ["க்","ச்","த்","ப்","ஞ்","ந்","ம்","ய்","வ்","ங்"],["ச்", "ஞ்", "ட்", "ண்", "த்", "ந்", "ப்", "ம்", "ய்", "ர்", "ல்", "வ்", "ழ்", "ள்", "ற்","ன்"])		    
     elif "ர்" in letters and letters.index("ர்")!=len(letters)-1:
-        return meymayakkam_checker(letters, "ர்", ["க்","ச்","த்","ப்","ஞ்","ந்","ம்","ய்","வ்","ங்"])
+        return meymayakkam_checker(letters, "ர்", ["க்","ச்","த்","ப்","ஞ்","ந்","ம்","ய்","வ்","ங்"],["ங்", "ச்", "ஞ்", "ட்", "ண்", "த்", "ந்", "ப்", "ம்", "ய்", "ர்", "ல்", "வ்", "ழ்", "ள்", "ற்","ன்"])
     elif "ழ்" in letters and letters.index("ழ்")!=len(letters)-1:
-        return meymayakkam_checker(letters, "ழ்", ["க்","ச்","த்","ப்","ஞ்","ந்","ம்","ய்","வ்","ங்"])
+        return meymayakkam_checker(letters, "ழ்", ["க்","ச்","த்","ப்","ஞ்","ந்","ம்","ய்","வ்","ங்"],["ங்", "ச்", "ஞ்", "ட்", "ண்", "த்", "ந்", "ப்", "ம்", "ய்", "ர்", "ல்", "வ்", "ழ்", "ள்", "ற்","ன்"])
     else:
         return None
 			    
@@ -159,24 +158,24 @@ def meymayakkam8(word):
     Mei = ["க்", "ச்", "த்", "ப்", "ங்", "ஞ்", "ந்", "ம்"]
     if "ய்" in letters and letters.index("ய்")!=len(letters)-1:
         ind=letters.index("ய்")
-        if letters[ind+1] in Mei:
+        if letters[ind+1] in Mei: 
             return True
         else:
-            return meymayakkam_checker(letters, "ய்", ["க்","ச்","த்","ப்","ஞ்","ந்","ம்","ங்"])
+            return meymayakkam_checker(letters, "ய்", ["க்","ச்","த்","ப்","ஞ்","ந்","ம்","ங்"],[ "ட்", "ண்", "ய்", "ர்", "ல்", "வ்", "ழ்", "ள்", "ற்","ன்"])
 
     elif "ர்" in letters and letters.index("ர்")!=len(letters)-1:
         ind=letters.index("ர்")
         if letters[ind+1] in Mei:
             return True
         else:
-            return meymayakkam_checker(letters, "ர்", ["க்","ச்","த்","ப்","ஞ்","ந்","ம்","ங்"])
+            return meymayakkam_checker(letters, "ர்", ["க்","ச்","த்","ப்","ஞ்","ந்","ம்","ங்"],[ "ட்", "ண்", "ய்", "ர்", "ல்", "வ்", "ழ்", "ள்", "ற்","ன்"])
 
     elif "ழ்" in letters and letters.index("ழ்")!=len(letters)-1:
         ind=letters.index("ழ்")
         if letters[ind+1] in Mei:
             return True
         else:
-            return meymayakkam_checker(letters, "ழ்", ["க்","ச்","த்","ப்","ஞ்","ந்","ம்","ங்"])
+            return meymayakkam_checker(letters, "ழ்", ["க்","ச்","த்","ப்","ஞ்","ந்","ம்","ங்"],[ "ட்", "ண்", "ய்", "ர்", "ல்", "வ்", "ழ்", "ள்", "ற்","ன்"])
     else:
         return None
 
