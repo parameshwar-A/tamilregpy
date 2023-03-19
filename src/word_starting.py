@@ -20,7 +20,6 @@ def uyirezhuthu_check(word):
 def uyirmei_ka_check(word):
     உயிர்மெய்_முதலெழுத்து_கவரிசை=["க", "கா", "கி", "கீ", "கு", "கூ", "கெ", "கே", "கை", "கொ", "கோ", "கௌ"]
     first_letter=tamil.utf8.get_letters(word)[0]
-    print(first_letter, first_letter in உயிர்மெய்_முதலெழுத்து_கவரிசை)
     if first_letter in உயிர்மெய்_முதலெழுத்து_கவரிசை:
         return True
     else:
