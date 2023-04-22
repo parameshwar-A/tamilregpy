@@ -81,8 +81,8 @@ with open(filename, "r+") as dataset:
 
 
 print(f"Report of {filename}")
-print(f"மொத்த சொற்களின் என்னிக்கை : {report['total_words']}")
-print(f"சரி பார்க்காத ஓர் எழுத்து சொற்கள் மற்றும் இரு சொற்களின் என்னிக்கை  : {report['skipped_words']}")
-print(f"மெய்ம்மயக்க விதிப்படி சரியான சொற்களின் என்னிக்கை  : {report['meymayakkam_correct']}")
-print(f"மொழி முதல் எழுத்து  விதிப்படி சரியான சொற்களின் என்னிக்கை  : {report['wordstarting_correct']}")
-print(f"மொழி  இறுதி எழுத்து  விதிப்படி சரியான சொற்களின் என்னிக்கை  : {report['wordending_correct']}")
+print(f"மொத்த சொற்களின் எண்ணிக்கை : {report['total_words']}")
+print(f"சரி பார்க்காத ஓர் எழுத்து சொற்கள் மற்றும் இரு சொற்களின் எண்ணிக்கை  : {report['skipped_words']}")
+print(f"மெய்ம்மயக்க விதிப்படி சரியான சொற்களின் எண்ணிக்கை  : {report['meymayakkam_correct']}")
+print(f"மொழி முதல் எழுத்து  விதிப்படி சரியான சொற்களின் எண்ணிக்கை  : {report['wordstarting_correct']}")
+print(f"மொழி  இறுதி எழுத்து  விதிப்படி சரியான சொற்களின் எண்ணிக்கை  : {report['wordending_correct']}")
