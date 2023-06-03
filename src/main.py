@@ -11,13 +11,7 @@ ruleset={
     "wordstarting" : (uyirezhuthu_check , uyirmei_ka_check , uyirmei_sa_check , uyirmei_nga_check  , uyirmei_ta_check , uyirmei_na_check , uyirmei_pa_check , uyirmei_ma_check , uyirmei_ya_check , uyirmei_va_check)
 }
 
-report={
-'total_words':0,
-'skipped_words':0,
-'meymayakkam_correct':0,
-'wordending_correct':0,
-'wordstarting_correct':0
-}
+
 
 def do_meymayakkam_check(word):
     meymayakkam_checks=[]
@@ -49,40 +43,81 @@ def do_wordstarting_check(word):
             wordstarting_checks.append(output)
     return wordstarting_checks
 
-
-filename=input("Enter the name of the file: ")
-column_num=int(input("Enter the column number which has word to check: "))
-
-
-with open(filename, "r+") as dataset:
-    csvreader=csv.reader(dataset)
-    header=next(csvreader)
-    for row in csvreader:
-        word=row[column_num-1]
-        report['total_words']=report.get('total_words')+1
-        if len(word.split())>1 or len(word)<=2:
-            #This is to skip multi word (அல்லும் பகலும்) and word with single letter (தீ)
-            report['skipped_words']=report.get('skipped_words')+1
-            continue
+def word_check():
+    word= input("Enter the word you want to check: ")
+    if len(word.split())>1 or len(word)<=2:
+        #This is to skip multi word (அல்லும் பகலும்) and word with single letter (தீ)
+        print(f"Skipping the word {word} because it is a single letter word or a multi word")
+    else:
         print(f"{word}: ")
         meymayakkam_checks=do_meymayakkam_check(word)
         wordending_checks=do_wordending_check(word)
         wordstarting_checks=do_wordstarting_check(word)
         print(f"\tMeymayakkam check for {word}:", any(meymayakkam_checks))
-        if any(meymayakkam_checks):
-            report['meymayakkam_correct']=report.get('meymayakkam_correct')+1
         print(f"\twordending check for {word}:", any(wordending_checks))
-        if any(wordending_checks):
-            report['wordending_correct']=report.get('wordending_correct')+1
         print(f"\twordstarting check for {word}:", any(wordstarting_checks))
-        if any(wordstarting_checks):
-            report['wordstarting_correct']=report.get('wordstarting_correct')+1
+
+def file_check():
+    filename=input("Enter the name of the file: ")
+    column_num=int(input("Enter the column number which has word to check: "))
+
+    report={
+    'total_words':0,
+    'skipped_words':0,
+    'meymayakkam_correct':0,
+    'wordending_correct':0,
+    'wordstarting_correct':0
+    }
+
+    with open(filename, "r+") as dataset:
+        csvreader=csv.reader(dataset)
+        header=next(csvreader)
+        for row in csvreader:
+            word=row[column_num-1]
+            report['total_words']=report.get('total_words')+1
+            if len(word.split())>1 or len(word)<=2:
+                #This is to skip multi word (அல்லும் பகலும்) and word with single letter (தீ)
+                report['skipped_words']=report.get('skipped_words')+1
+                continue
+            print(f"{word}: ")
+            meymayakkam_checks=do_meymayakkam_check(word)
+            wordending_checks=do_wordending_check(word)
+            wordstarting_checks=do_wordstarting_check(word)
+            print(f"\tMeymayakkam check for {word}:", any(meymayakkam_checks))
+            if any(meymayakkam_checks):
+                report['meymayakkam_correct']=report.get('meymayakkam_correct')+1
+            print(f"\twordending check for {word}:", any(wordending_checks))
+            if any(wordending_checks):
+                report['wordending_correct']=report.get('wordending_correct')+1
+            print(f"\twordstarting check for {word}:", any(wordstarting_checks))
+            if any(wordstarting_checks):
+                report['wordstarting_correct']=report.get('wordstarting_correct')+1
 
 
 
-print(f"Report of {filename}")
-print(f"மொத்த சொற்களின் எண்ணிக்கை : {report['total_words']}")
-print(f"சரி பார்க்காத ஓர் எழுத்து சொற்கள் மற்றும் இரு சொற்களின் எண்ணிக்கை  : {report['skipped_words']}")
-print(f"மெய்ம்மயக்க விதிப்படி சரியான சொற்களின் எண்ணிக்கை  : {report['meymayakkam_correct']}")
-print(f"மொழி முதல் எழுத்து  விதிப்படி சரியான சொற்களின் எண்ணிக்கை  : {report['wordstarting_correct']}")
-print(f"மொழி  இறுதி எழுத்து  விதிப்படி சரியான சொற்களின் எண்ணிக்கை  : {report['wordending_correct']}")
+    print(f"Report of {filename}")
+    print(f"மொத்த சொற்களின் எண்ணிக்கை : {report['total_words']}")
+    print(f"சரி பார்க்காத ஓர் எழுத்து சொற்கள் மற்றும் இரு சொற்களின் எண்ணிக்கை  : {report['skipped_words']}")
+    print(f"மெய்ம்மயக்க விதிப்படி சரியான சொற்களின் எண்ணிக்கை  : {report['meymayakkam_correct']}")
+    print(f"மொழி முதல் எழுத்து  விதிப்படி சரியான சொற்களின் எண்ணிக்கை  : {report['wordstarting_correct']}")
+    print(f"மொழி  இறுதி எழுத்து  விதிப்படி சரியான சொற்களின் எண்ணிக்கை  : {report['wordending_correct']}")
+
+def print_menu():
+    print("The available modes are: ")
+    print("1 : Single word check")
+    print("2 : List of words from csv file")
+
+
+while True:
+    option = int(input("Enter the mode you want to check(1/2): "))
+    if option == 1:
+        word_check()
+    elif option == 2:
+        file_check()
+    else:
+        print("Invalid mode kindly check the available modes from the menu")
+
+    next_step = input("Do you want to check again(y/n): ")
+    if next_step.lower() == "n" or next_step.lower() not in "yn":
+        break
+        
